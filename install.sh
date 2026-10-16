@@ -52,7 +52,8 @@ ok "Bağımlılıklar hazır."
 DRIVER_VER="1.2.0"
 SRC="/usr/src/casper-wmi-${DRIVER_VER}"
 
-if lsmod | grep -q '^casper_wmi '; then
+# /proc/modules, not 'lsmod | grep -q': under pipefail lsmod gets SIGPIPE
+if grep -q '^casper_wmi ' /proc/modules; then
     info "Yüklü modül kaldırılıyor (yeni sürüm kurulacak)..."
     sudo rmmod casper_wmi 2>/dev/null || \
         fail "casper_wmi kaldırılamadı. Diğer pencereleri kapatıp tekrar dene."
