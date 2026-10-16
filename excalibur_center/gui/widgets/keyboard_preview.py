@@ -90,7 +90,7 @@ class KeyboardPreview(QWidget):
         key_font = QFont(self.font())
         key_font.setPixelSize(max(8, int(row_h * 0.28)))
 
-        zone_rects: dict[int, list[QRectF]] = {3: [], 4: [], 5: []}
+        zone_rects: dict[int, list[QRectF]] = {int(z): [] for z in (Zone.LEFT, Zone.CENTER, Zone.RIGHT)}
 
         for r, row in enumerate(_ROWS):
             total_units = sum(_WIDE.get(k, 1.0) for k in row)

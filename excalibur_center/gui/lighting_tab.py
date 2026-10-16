@@ -28,7 +28,10 @@ PRESETS: list[str] = [
     "7B00FF", "FF00C8", "FF6B9E", "C0C8D4",
 ]
 
-ZONE_KEYS = {3: "zone.left", 4: "zone.center", 5: "zone.right", 6: "zone.all"}
+ZONE_KEYS = {
+    int(Zone.LEFT): "zone.left", int(Zone.CENTER): "zone.center",
+    int(Zone.RIGHT): "zone.right", int(Zone.ALL): "zone.all",
+}
 BRI_KEYS = {0: "bri.off", 1: "bri.mid", 2: "bri.max"}
 EFFECT_KEYS = {
     1: "effect.normal", 2: "effect.blink", 3: "effect.fade",
@@ -63,7 +66,7 @@ class LightingPage(QWidget):
         zone_row = QHBoxLayout()
         zone_row.setSpacing(8)
         self.zone_buttons: dict[int, QPushButton] = {}
-        for code in (3, 4, 5, 6):
+        for code in (int(Zone.LEFT), int(Zone.CENTER), int(Zone.RIGHT), int(Zone.ALL)):
             btn = QPushButton(t(ZONE_KEYS[code]))
             btn.setCheckable(True)
             btn.setObjectName("brightnessChip")
