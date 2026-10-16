@@ -71,7 +71,17 @@ class KeyboardPreview(QWidget):
         plate = QPainterPath()
         plate.addRoundedRect(area, 12, 12)
         painter.fillPath(plate, QColor("#101218"))
-        painter.setPen(QPen(QColor("#23262e"), 1))
+        corner = self._colors.get(int(Zone.CORNER))
+        if corner is not None and corner[1] != int(Brightness.OFF):
+            # corner/edge LED strip drawn as a glowing rim around the deck
+            base = QColor(f"#{corner[0]}")
+            factor = BRIGHTNESS_FACTOR.get(corner[1], 1.0)
+            rim = QColor(int(base.red() * factor),
+                         int(base.green() * factor),
+                         int(base.blue() * factor))
+            painter.setPen(QPen(rim, 3))
+        else:
+            painter.setPen(QPen(QColor("#23262e"), 1))
         painter.drawPath(plate)
 
         rows = len(_ROWS)
