@@ -14,6 +14,9 @@ from typing import Final
 
 LED_CONTROL_PATH: Final[str] = "/sys/class/leds/casper::kbd_backlight/led_control"
 
+# corner/edge LEDs as a multicolor LED class device (casper-wmi fork >= 1.1.0)
+CORNER_LED_PATH: Final[str] = "/sys/class/leds/casper::corner_backlight"
+
 HELPER_SCRIPT_PATH: Final[str] = "/usr/lib/excalibur-center/priv-write-helper"
 
 POLKIT_ACTION: Final[str] = "org.excalibur.center.priv-write"
@@ -22,12 +25,13 @@ APP_CONFIG_DIR: Final[Path] = Path.home() / ".config" / "excalibur-center"
 
 
 class Zone(IntEnum):
-    """Keyboard LED zones as defined in the casper-wmi kernel module."""
+    """LED zones as defined in the casper-wmi kernel module."""
 
     LEFT = 0x03
     CENTER = 0x04
     RIGHT = 0x05
     ALL = 0x06
+    CORNER = 0x07
 
 
 ZONE_LABELS: Final[dict[str, Zone]] = {
@@ -38,6 +42,8 @@ ZONE_LABELS: Final[dict[str, Zone]] = {
     "sag": Zone.RIGHT,
     "all": Zone.ALL,
     "tumu": Zone.ALL,
+    "corner": Zone.CORNER,
+    "kose": Zone.CORNER,
 }
 
 ZONE_NAMES: Final[dict[int, str]] = {
@@ -45,6 +51,7 @@ ZONE_NAMES: Final[dict[int, str]] = {
     Zone.CENTER: "Orta",
     Zone.RIGHT: "Sağ",
     Zone.ALL: "Tümü",
+    Zone.CORNER: "Köşe",
 }
 
 KEYBOARD_ZONES: Final[tuple[Zone, ...]] = (Zone.LEFT, Zone.CENTER, Zone.RIGHT)

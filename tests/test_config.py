@@ -44,6 +44,11 @@ class TestBuildCommand:
         cmd = build_command(Zone.RIGHT, Brightness.OFF, RGBColor(0, 0, 0))
         assert cmd == "500000000"
 
+    def test_corner_zone_green_max(self):
+        cmd = build_command(Zone.CORNER, Brightness.MAX, RGBColor(0, 255, 0))
+        assert cmd == "70200FF00"
+        assert COMMAND_RE.match(cmd)
+
     def test_invalid_brightness_rejected_by_backend_not_builder(self):
         # builder itself only checks shape; backend validates range
         cmd = build_command(Zone.ALL, 9, RGBColor(255, 255, 255))
