@@ -67,6 +67,10 @@ for old_ver in 1.0.0 1.1.0; do
     fi
 done
 
+# Drop a previous registration of the same version too, otherwise DKMS
+# reports "already built/installed" and keeps the old module.
+sudo dkms remove "casper-wmi/${DRIVER_VER}" --all >/dev/null 2>&1 || true
+
 info "casper-wmi ${DRIVER_VER} kuruluyor..."
 sudo mkdir -p "$SRC"
 sudo cp "${SCRIPT_DIR}/driver/casper-wmi.c" "$SRC/"
