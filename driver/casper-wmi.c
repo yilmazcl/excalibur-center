@@ -15,6 +15,8 @@
  *   - Declare HWMON_PWM_INPUT so that the power plan is actually
  *     exposed as pwm1 in sysfs (the write handler existed but was
  *     unreachable because only HWMON_PWM_MODE was declared).
+ *
+ * Fork changes (v1.2.0):
  *   - Expose the corner/edge LEDs (zone 0x07) as their own multicolor LED
  *     class device, casper::corner_backlight, and keep its state in sync
  *     with zone 7 writes made through led_control.
@@ -41,7 +43,7 @@
 MODULE_AUTHOR("Mustafa Ekşi <mustafa.eskieksi@gmail.com>");
 MODULE_DESCRIPTION("Casper Excalibur Laptop WMI driver");
 MODULE_LICENSE("GPL");
-MODULE_VERSION("1.1.0");
+MODULE_VERSION("1.2.0");
 
 #define CASPER_WMI_GUID "644C5791-B7B0-4123-A90B-E93876E0DAAD"
 

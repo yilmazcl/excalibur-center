@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- **Sürücü**: casper-wmi fork'u 1.2.0'a yükseltildi; `install.sh` eski
+  1.1.0 DKMS kaydını kaldırıp yenisini kuruyor (aynı sürüm numarasıyla DKMS
+  eski modülü yerinde bırakırdı).
 - **Özellik**: Köşe/kenar şerit LED'leri (bölge `0x07`) artık ayrı bir
   multicolor LED aygıtı: `casper::corner_backlight` (`brightness` 0/1 +
   `multi_intensity` R G B). `led_control` üzerinden yapılan bölge 7

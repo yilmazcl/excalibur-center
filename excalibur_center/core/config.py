@@ -14,7 +14,7 @@ from typing import Final
 
 LED_CONTROL_PATH: Final[str] = "/sys/class/leds/casper::kbd_backlight/led_control"
 
-# corner/edge LEDs as a multicolor LED class device (casper-wmi fork >= 1.1.0)
+# corner/edge LEDs as a multicolor LED class device (casper-wmi fork >= 1.2.0)
 CORNER_LED_PATH: Final[str] = "/sys/class/leds/casper::corner_backlight"
 
 HELPER_SCRIPT_PATH: Final[str] = "/usr/lib/excalibur-center/priv-write-helper"
