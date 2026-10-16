@@ -132,9 +132,9 @@ static const struct dmi_system_id casper_dmi_list[] = {
 	 .ident = "CASPER EXCALIBUR G900",
 	 .matches = {
 		     DMI_MATCH(DMI_SYS_VENDOR, "CASPER BILGISAYAR SISTEMLERI"),
-		     DMI_MATCH(DMI_PRODUCT_NAME, "EXCALIBUR G900"),
-		     DMI_MATCH(DMI_BIOS_VERSION, "CP131")
+		     DMI_MATCH(DMI_PRODUCT_NAME, "EXCALIBUR G900")
 		     },
+	 /* Verified on hardware with BIOS CP171: EC reports big-endian fan speed. */
 	 .driver_data = &no_raw_fanspeed,
 	},
 	{ }
