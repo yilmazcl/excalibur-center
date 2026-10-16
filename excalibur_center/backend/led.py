@@ -13,6 +13,7 @@ The backend auto-detects whichever interface is present.
 from __future__ import annotations
 
 import logging
+import subprocess
 import threading
 from pathlib import Path
 
@@ -95,7 +96,8 @@ class LEDBackend:
         try:
             from ..core.profiles import ProfileManager
 
-            snap, _ = ProfileManager().get_last_state()
+            pm = ProfileManager()
+            snap, _ = pm.get_last_state()
         except Exception:  # noqa: BLE001
             return
         if not isinstance(snap, dict):
