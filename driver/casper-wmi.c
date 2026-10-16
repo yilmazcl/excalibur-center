@@ -11,7 +11,8 @@
  *     The fan read path dereferenced a static pointer that was only set
  *     by dmi_matched(); on unmatched systems any read of fan*_input
  *     crashed the kernel task reading it.
- *   - Add EXCALIBUR G770 and a generic CASPER fallback to the DMI table.
+ *   - Add EXCALIBUR G770 to the DMI table; unlisted models fall back to
+ *     raw fan speed values instead of crashing.
  *   - Declare HWMON_PWM_INPUT so that the power plan is actually
  *     exposed as pwm1 in sysfs (the write handler existed but was
  *     unreachable because only HWMON_PWM_MODE was declared).
@@ -20,6 +21,7 @@
  *   - Expose the corner/edge LEDs (zone 0x07) as their own multicolor LED
  *     class device, casper::corner_backlight, and keep its state in sync
  *     with zone 7 writes made through led_control.
+ *   - Match EXCALIBUR G900 regardless of BIOS version (CP171 verified).
  *
  * GPL-2.0-or-later, same as upstream.
  */
